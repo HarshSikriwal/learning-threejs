@@ -1,40 +1,53 @@
 "use client";
-import * as THREE from "three";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import {
+  Box,
+  OrbitControls,
+  PerspectiveCamera,
+  Plane,
+} from "@react-three/drei";
 
-export default function Home() {
-  const canvasValue = useRef<HTMLCanvasElement>(null);
-  const [scene, setScene] = useState<THREE.Scene | null>(null);
-  useEffect(() => {
-    const newScene = new THREE.Scene();
-
-    const geometry = new THREE.SphereGeometry(3, 64, 64);
-    console.log(geometry);
-    const material = new THREE.MeshStandardMaterial({
-      color: "#00ff83",
-    });
-    const mesh = new THREE.Mesh(geometry, material);
-    newScene.add(mesh);
-
-    const light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(0, 10, 10);
-    newScene.add(light);
-
-    const camera = new THREE.PerspectiveCamera(45, 800 / 600);
-    camera.position.z = 40;
-    newScene.add(camera);
-
-    let canvas = canvasValue.current;
-    if (!canvas) return;
-
-    setScene(newScene);
-    const renderer = new THREE.WebGLRenderer({ canvas });
-    renderer.setSize(800, 600);
-    renderer.render(newScene, camera);
-  }, []);
+export default function App() {
   return (
-    <main className="h-screen w-screen">
-      <canvas ref={canvasValue} />
-    </main>
+    <div className="h-screen w-screen bg-[#9b80c3]">
+      <Canvas>
+        <PerspectiveCamera makeDefault position={[0, 0.6, 8]} fov={45} />
+        {/* <OrbitControls /> */}
+        <ambientLight intensity={1} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        {/* Floor */}
+        <Plane
+          args={[10, 6]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -1.5, 0]}
+        >
+          <meshStandardMaterial color="#d4cbc8" />
+        </Plane>
+        {/* facing wall */}
+        <Plane args={[10, 8]} position={[0, 3, -3]} rotation={[0, 0, 0]}>
+          <meshStandardMaterial color="#9b80c3" />
+        </Plane>
+        {/* side wall tiles*/}
+        <Box
+          args={[6, 0.5, 0.1]}
+          position={[-5, -1.25, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <meshStandardMaterial color="white" />
+        </Box>
+        <Box
+          args={[6, 0.5, 0.1]}
+          position={[5.01, -1.25, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <meshStandardMaterial color="white" />
+        </Box>
+        {/* facing wall tiles */}
+        <Box args={[10, 0.5, 0.1]} position={[0, -1.25, -3]}>
+          <meshStandardMaterial color="white" />
+        </Box>
+      </Canvas>
+    </div>
   );
 }
