@@ -164,6 +164,7 @@ sphere.position.x = -1.5;
 torus.position.x = 1.5;
 
 scene.add(plane, sphere, torus);
+
 /**
  * Sizes
  */
