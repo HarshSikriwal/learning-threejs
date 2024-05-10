@@ -1,6 +1,6 @@
 export default {
     root: "./",
-    publicDir: "../static/",
+    publicDir: "./static/",
     base: "./",
     server: {
         host: true, // Open to local network and display URL
