@@ -17,6 +17,11 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.5.tgz"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
 
+cannon-es@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.npmjs.org/cannon-es/-/cannon-es-0.15.1.tgz"
+  integrity sha512-NkrU8OkM5K4q7Ljj69nfwC5UmPuoiAga6v98Aus0QHTdgJFwBfPTDXRkc3qpGGOixdUisFzmJo0DpKWIi6N+4g==
+
 esbuild@^0.20.1:
   version "0.20.2"
   resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.20.2.tgz"

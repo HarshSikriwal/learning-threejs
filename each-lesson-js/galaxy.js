@@ -14,6 +14,9 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 
+// const textureLoader = new THREE.TextureLoader();
+// const particleTexture = textureLoader.load("/textures/particles/5.png");
+
 //galaxy
 const parameters = {};
 parameters.count = 100000;
@@ -86,7 +89,10 @@ const galaxyGenereator = () => {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
     //material
-    material = new THREE.PointsMaterial({ color: "white" });
+    material = new THREE.PointsMaterial({
+        color: "white",
+        map: particleTexture,
+    });
     material.size = parameters.size;
     material.sizeAttenuation = true;
     material.depthWrite = false;
